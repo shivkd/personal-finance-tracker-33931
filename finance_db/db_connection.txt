@@ -1,10 +1,22 @@
-# ========== Production (Supabase) Connection ==========
-# This is the connection string for your production database on Supabase.
+# === Production (Supabase) Connection ===
+# This is the PostgreSQL connection string for your production (Supabase-hosted) database:
 psql postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require
 
-# Replace [YOUR_SECRET_PASSWORD] with your actual DB password from Supabase dashboard.
-# You can also use the full connection string from your Supabase DB panel.
+# Replace [YOUR_SECRET_PASSWORD] with your actual DB password from the Supabase dashboard (Project > Database > Connection info).
+# You may also use the full copied connection string from your Supabase DB panel for connection or `.env` variable usage.
+# Recommended (Backend): Set this connection string in your app's `.env` as:
+#   POSTGRES_URL="postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require"
 
-# ========== Local Development Connection ==========
-# If you are running a local Postgres instance for development, use:
+# === Local Development Connection (Dev Only) ===
+# If you wish to run a local Postgres for offline/dev testing, use:
 psql postgresql://appuser:dbuser123@localhost:5000/myapp
+
+# Or set in your .env or via export, as:
+#   POSTGRES_URL="postgresql://appuser:dbuser123@localhost:5000/myapp"
+#   POSTGRES_USER=appuser
+#   POSTGRES_PASSWORD=dbuser123
+#   POSTGRES_DB=myapp
+#   POSTGRES_PORT=5000
+
+# Switch between environments by updating your .env, or by `source finance_db/db_visualizer/postgres.env` (then start your backend).
+# NOTE: Never commit actual credentials; always use placeholders in committed files.

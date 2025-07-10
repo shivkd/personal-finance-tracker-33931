@@ -2,43 +2,60 @@
 
 ## Supabase Project Details
 - **Supabase URL:** https://xihtrwadyqfimillpxff.supabase.co
-- **Supabase Key:** (see project secrets or environment for secure access)
-- **Postgres Connection String (Production):**
+- **Supabase Key:** (keep private; obtain from project secrets or authorized team personnel)
+- **Postgres Connection String (Supabase/Production):**
     ```
     postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require
     ```
-  Where `[YOUR_SECRET_PASSWORD]` is found in the Supabase dashboard.
+  `[YOUR_SECRET_PASSWORD]` is visible in the Supabase dashboard: Project > Database > Connection info.
 
 ---
 
-## Usage for Production
-- All backend, visualization tools, and user services should use the Supabase connection as primary database (see example connection string above).
-- Environment variable templates updated in `db_visualizer/postgres.env`.
-- `db_connection.txt` also provides a ready-to-use command.
+## Environment Variable Usage (Backend/Tools)
+- Always set Supabase credentials in environment variables for the backend (`POSTGRES_URL`, etc.) and in tooling configs.
+- Example `.env` for FastAPI or Node backend:
+    ```
+    POSTGRES_URL="postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require"
+    POSTGRES_USER="postgres"
+    POSTGRES_PASSWORD="[YOUR_SECRET_PASSWORD]"
+    POSTGRES_DB="postgres"
+    POSTGRES_PORT="5432"
+    ```
+- For local development, substitute with local connection string as shown in onboarding/README.
 
-## Usage for Local Development
-- Local Postgres setup is available for development only.
-- Script: `finance_db/startup.sh` automates the creation of a compatible local developer environment.
-- Switch environment variables in `db_visualizer/postgres.env` as needed.
+---
 
-## Connecting from Backend/Tools
-1. For production: use Supabase credentials.
-2. For local dev: use local credentials (see above and script).
-3. FastAPI/ORM: use the same `POSTGRES_URL` string as your `DATABASE_URL` or equivalent variable.
+## Usage for Production (Supabase)
+- All backend/api tooling should, by default, use the Supabase Postgres connection string.
+- Ensure `.env`/exported variables are populated accordingly.
+- Templates for environment variables are in `finance_db/db_visualizer/postgres.env`.
+- `db_connection.txt` has a ready-to-paste connection command for psql/CLI use.
+
+## Usage for Local Development (Offline Option)
+- Use the helper script `finance_db/startup.sh` to spin up/dev a local Postgres instance.
+- This script generates a local `.env` (useful for backend) and updates `db_connection.txt`.
+- Switch modes by editing/commenting the proper env vars in `finance_db/db_visualizer/postgres.env` or your backend `.env`.
+
+## Backend Development Workflow
+- For typical FastAPI/Python (or Node.js, etc.) simply set `POSTGRES_URL` in `.env`.
+- The backend code should read the connection string from `.env` (dev loads local, prod loads Supabase).
+- To switch: update `.env`, or `source finance_db/db_visualizer/postgres.env` before starting backend/tooling.
 
 ### Security Note
-- Never commit the actual database password to the repository.
-- Use placeholders (`[YOUR_SECRET_PASSWORD]`) and provide secure distribution of secrets.
+- **Never commit real database passwords or Supabase service keys to version control.**
+- Use `[YOUR_SECRET_PASSWORD]` (or similar) in committed files and share secrets via secure means.
 
 ---
 
-## Quick Start (Onboarding Checklist)
-1. Review updated docs in `README.md`.
-2. For production, fetch credentials from Supabase dashboard.
-3. (Dev Only) For local setup, run the script: `bash finance_db/startup.sh`.
-4. Source the environment: `source finance_db/db_visualizer/postgres.env`.
-5. Connect any backend or tooling to the DB using the environment configuration.
+## Quick Start (Developer Onboarding)
+1. Read onboarding steps in `README.md`.
+2. **Production:** Use Supabase; set real credentials from dashboard.
+3. **Dev (offline):** Optionally run `bash finance_db/startup.sh` and use the generated local settings.
+4. Before using backend/tools, ensure env vars are correct (`source db_visualizer/postgres.env` or update `.env`).
+5. Use `db_connection.txt` for copy-paste CLI access.
 
 ---
+
+Task completed: Dual-mode PostgreSQL instructions (Supabase + local) clarified across configuration, onboarding, and scripts.
 
 Task completed: Supabase PostgreSQL integration documented, onboarding clarified, and development option preserved.
