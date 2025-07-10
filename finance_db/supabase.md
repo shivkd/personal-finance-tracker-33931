@@ -1,5 +1,20 @@
 # Supabase Configuration for finance_db
 
+---
+**Quick Reference: Dual Environment Setup (Supabase Production & Local Dev)**
+
+| Step   | Production (Supabase)                                                               | Local Development (offline, optional)                |
+|--------|------------------------------------------------------------------------------------|------------------------------------------------------|
+| 1.     | Copy the "Supabase" export block from `db_visualizer/postgres.env`                | Run `bash finance_db/startup.sh` once                |
+| 2.     | Replace `[YOUR_SECRET_PASSWORD]` with the real value from Supabase dashboard      | Check or copy the env vars from generated file        |
+| 3.     | Set these as `.env` for backend/tools or `source db_visualizer/postgres.env`      | `source db_visualizer/postgres.env` or use .env      |
+| 4.     | Start backend/services normally                                                   | Start backend/services normally                       |
+| Switch | Edit/comment/uncomment blocks in `db_visualizer/postgres.env`; always avoid real creds in committed files |
+
+For full onboarding and switching details, see `README.md`, or refer to documentation below.
+
+---
+
 ## Supabase Project Details
 - **Supabase URL:** https://xihtrwadyqfimillpxff.supabase.co
 - **Supabase Key:** (keep private; obtain from project secrets or authorized team personnel)

@@ -1,5 +1,14 @@
+# === Connection Quick Start: Dual Environment (Supabase vs. Local) ===
+# This file contains ready-to-use connection commands for BOTH production (Supabase) and local development.
+
+# --- How To Use ---
+# • For Supabase PROD: Use the first connection string/template below, insert your real DB password from Supabase dashboard.
+# • For Local DEV: Either run `bash finance_db/startup.sh` or use the provided connection string below.
+
+# See the project README.md section "Database Setup and Environment Management" for step-by-step onboarding.
+# You can also see finance_db/supabase.md for a quick reference table on switching modes!
+
 # === Production (Supabase) Connection ===
-# This is the PostgreSQL connection string for your production (Supabase-hosted) database:
 psql postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require
 
 # Replace [YOUR_SECRET_PASSWORD] with your actual DB password from the Supabase dashboard (Project > Database > Connection info).
