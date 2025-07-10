@@ -1,0 +1,1 @@
+{"is_source_file": true, "file_id": 8, "git_revision": "", "state": 1, "description": "", "external_files": [], "external_methods": [], "published": [], "classes": [], "methods": [], "calls": [], "search-terms": [], "hash": "76d9a0b13f51785f61de47864c94600c", "format-version": 4, "code-base-name": "finance_db", "filename": "supabase.md", "knowledge_revision": 16}

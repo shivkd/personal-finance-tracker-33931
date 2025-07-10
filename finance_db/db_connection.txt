@@ -1,1 +1,10 @@
+# ========== Production (Supabase) Connection ==========
+# This is the connection string for your production database on Supabase.
+psql postgresql://postgres:[YOUR_SECRET_PASSWORD]@db.xihtrwadyqfimillpxff.supabase.co:5432/postgres?sslmode=require
+
+# Replace [YOUR_SECRET_PASSWORD] with your actual DB password from Supabase dashboard.
+# You can also use the full connection string from your Supabase DB panel.
+
+# ========== Local Development Connection ==========
+# If you are running a local Postgres instance for development, use:
 psql postgresql://appuser:dbuser123@localhost:5000/myapp
