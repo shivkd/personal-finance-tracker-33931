@@ -6,6 +6,13 @@
 
 ## Database Setup and Environment Management
 
+> **IMPORTANT for Docker/DevOps users:**  
+> The finance_db PostgreSQL container must be started and fully available before starting the finance_backend container.  
+> If using docker-compose or any orchestration, ensure `finance_backend` depends_on `finance_db` (not the other way around).  
+> There is **no hard dependency the other way**; finance_db does not depend on backend logic.
+> 
+> If you encounter errors such as "finance_db (PostgreSQL) failed dependencies: finance_backend" in your orchestration, reverse the dependency order, or remove the dependency altogether for dev tools/scripts.
+
 ### 1. **Production Database: Supabase PostgreSQL (Default/Recommended)**
 - The primary/production database is fully managed on Supabase.
 - **Supabase PostgreSQL connection string (TEMPLATE):**
